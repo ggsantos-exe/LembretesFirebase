@@ -2,6 +2,7 @@ var authForm = document.getElementById('authForm');
 var title = document.getElementById('authFormTitle');
 var register = document.getElementById('register');
 var access = document.getElementById('access');
+var loading = document.getElementById('loading');
 
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar'

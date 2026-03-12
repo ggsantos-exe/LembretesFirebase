@@ -15,6 +15,20 @@ body {
     box-shadow: 5px 5px 9px #1a1a1b;
 }
 
+#loading {
+  position: fixed;          /* fica fixo na tela, não rola junto */
+  top: 50%;                 /* centraliza verticalmente */
+  left: 50%;                /* centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* ajusta para o centro exato */
+  z-index: 9999;            /* fica acima de todos os elementos */            /* começa escondido, você controla via JS */
+}
+
+#loading img {
+  width: 100%;             /* ajuste o tamanho do gif */
+  height: 100%;            /* pode deixar automático se preferir */
+}
+
+
 #footer{
     padding: 4px;
     text-align: center;
