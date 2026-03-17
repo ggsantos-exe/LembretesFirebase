@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/1916-3.png" type="image/x-icon">
 </head>
+
 <body>
-    
+
     <div id="app">
         <div class="center">
-            <img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/1f9e0.png" alt="Logo" width="150" height="150">
+            <img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/1f9e0.png" alt="Logo"
+                width="150" height="150">
             <h1>Pede ifood Pede</h1>
         </div>
         <div id="loading">
-            <img src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700">
+            <img
+                src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700">
         </div>
-        <div id="auth" >
+        <div id="auth">
             <form id="authForm">
                 <h3 id="authFormTitle">Acesse sua conta para continuar</h3>
                 <p>
@@ -47,17 +51,28 @@
 
                 <button type="submit" id="submitRegForm">Cadastrar</button>
 
-                
+
             </form>
 
-            
-                <p id="access" class="startHiden">Já possui uma conta?
-                    <button onclick="toggleToAccess()" class="alternative">Acesse a sua conta</button>
-                </p>
-            
+
+            <p id="access" class="startHiden">Já possui uma conta?
+                <button onclick="toggleToAccess()" class="alternative">Acesse a sua conta</button>
+            </p>
+
             <p id="register">Não possui uma conta?
                 <button onclick="toggleToRegister()" class="alternative">Cadastrar uma nova conta</button>
             </p>
+        </div>
+
+        <div id="user" class="startHiden">
+
+            <hr>
+            <div id="userInfo">
+                firebase.auth().onAuthStateChanged(function(user) { const nome = user.displayName ? user.displayName :
+                user.email;
+                document.getElementById("userInfo").innerHTML = `<p>Olá, ${nome}</p>`;
+            }
+            </div>
         </div>
     </div>
 
@@ -67,12 +82,13 @@
     <script src="js/utils.js"></script>
 
 
-<script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-storage.js"></script>
 
-<script src="js/firebase.js"></script>
-<script src="js/auth.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/auth.js"></script>
 </body>
+
 </html>
