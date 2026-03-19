@@ -6,7 +6,9 @@ var title = document.getElementById('authFormTitle');
 var register = document.getElementById('register');
 var access = document.getElementById('access');
 var loading = document.getElementById('loading');
-var userName = document.getElementById('userName')
+var userName = document.getElementById('userName');
+var sendEmailValidationDiv = document.getElementById('sendEmailValidationDiv');
+var emailValidator = document.getElementById('emailValidator');
 
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar'
@@ -41,6 +43,14 @@ function showAuth(){
 }
 
 function showUserContent(user){
+  if(user.emailVerified){
+    emailValidator.innerHTML = "Email já verificado =)"
+    hideItem(sendEmailValidationDiv)
+  }
+  else{
+    emailValidator.innerHTML = "Email NÃO verificado =("
+    showItem(sendEmailValidationDiv)
+  }
   authForm.email.value = ""
   authForm.password.value = ""
   regForm.name.value = ""

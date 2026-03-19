@@ -16,16 +16,16 @@ body {
 }
 
 #loading {
-  position: fixed;          /* fica fixo na tela, não rola junto */
-  top: 50%;                 /* centraliza verticalmente */
-  left: 50%;                /* centraliza horizontalmente */
-  transform: translate(-50%, -50%); /* ajusta para o centro exato */
-  z-index: 9999;            /* fica acima de todos os elementos */            /* começa escondido, você controla via JS */
+  position: fixed;          
+  top: 50%;                 
+  left: 50%;                
+  transform: translate(-50%, -50%); 
+  z-index: 9999;                        
 }
 
 #loading img {
-  width: 100%;             /* ajuste o tamanho do gif */
-  height: 100%;            /* pode deixar automático se preferir */
+  width: 100%;            
+  height: 100%;            
 }
 
 
@@ -49,11 +49,13 @@ body {
     display: none;
 }
 input{
+    height: 25%;
     width: 75%;
-    font-size: 10px;
+    font-size: 100%;
     opacity: 75%;
     border-radius: 6px;
     font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
     text-align: center;
     background-color: #9ccc97;
     border: none;
@@ -67,7 +69,7 @@ button {
     text-align: center;
     text-decoration: dashed;
     display: inline-block;
-    font-size: 12px;
+    font-size: 100%;
     margin: 2px 2px;
     cursor: pointer;
     border-radius: 50px;

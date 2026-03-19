@@ -49,6 +49,7 @@ regForm.onsubmit = function (event) {
 
 firebase.auth().onAuthStateChanged(function (user) {
     hideItem(loading)
+    console.log(user)
     if (user) {
         showUserContent(user)
     }
@@ -60,4 +61,15 @@ function signOut(){
     firebase.auth().signOut().catch(function (error) {
         alert('falha ao realizar logout', error)
     })
+}
+function sendEmailValidation() {
+  showItem(loading)
+  var user = firebase.auth().currentUser
+  user.sendEmailVerification().then(function () {
+    alert('E-mail  enviado para ' + user.email + '! Siga as instruções para finalizar a confirmação')
+  }).catch(function (error) {
+    alert('Falha ao enviar confirmação ' + error)
+  }).finally(function () {
+    hideItem(loading)
+  })
 }
