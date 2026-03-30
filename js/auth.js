@@ -75,3 +75,22 @@ function sendEmailValidation() {
     hideItem(loading)
   })
 }
+
+function resetPassword() {
+  var email = prompt("Digite seu email para receber as instruções de redefinição de senha:");
+    if (email) {
+       showItem(loading);
+        firebase.auth().sendPasswordResetEmail(email, actionCodeSeting) 
+            .then(function() {
+                alert('E-mail de redefinição de senha enviado para ' + email + '! Siga as instruções para redefinir sua senha.');
+            })
+            .catch(function(error) {
+                alert('Falha ao enviar email de redefinição de senha: ' + error.message);
+            })
+            .finally(function() {
+              hideItem(loading)
+            });
+    } else {
+        alert("Email é necessário para redefinir a senha.");
+    }       
+}

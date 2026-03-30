@@ -9,11 +9,13 @@ var loading = document.getElementById('loading');
 var userName = document.getElementById('userName');
 var sendEmailValidationDiv = document.getElementById('sendEmailValidationDiv');
 var emailValidator = document.getElementById('emailValidator');
+var passwordReset = document.getElementById('passwordReset');
 var actionCodeSeting = { url: 'http://127.0.0.1:5500/'}
 
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar'
   authFormTitle.innerHTML = 'Insira seus dados para se cadastrar'
+  hideItem(passwordReset)
   hideItem(authForm)
   hideItem(register)
   showItem(access)
@@ -25,6 +27,7 @@ function toggleToAccess() {
   authFormTitle.innerHTML = 'Acesse a sua conta para continuar'
   hideItem(document.getElementById('regForm'))
   hideItem(access)
+  showItem(passwordReset)
   showItem(register)
   showItem(authForm)
 
