@@ -12,7 +12,7 @@ var sendEmailValidationDiv = document.getElementById('sendEmailValidationDiv');
 var emailValidator = document.getElementById('emailValidator');
 var passwordReset = document.getElementById('passwordReset');
 var googleLogin = document.getElementById('googleLogin');
-var actionCodeSeting = { url: 'http://127.0.0.1:5500/'}
+var actionCodeSeting = { url: 'http://127.0.0.1:5500/' }
 
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar'
@@ -45,17 +45,17 @@ function hideItem(element) {
   element.style.display = 'none'
 }
 
-function showAuth(){
+function showAuth() {
   hideItem(userContent)
   showItem(authContent)
 }
 
-function showUserContent(user){
-  if(user.emailVerified){
+function showUserContent(user) {
+  if (user.emailVerified) {
     emailValidator.innerHTML = "Email já verificado =)"
     hideItem(sendEmailValidationDiv)
   }
-  else{
+  else {
     emailValidator.innerHTML = "Email NÃO verificado =("
     showItem(sendEmailValidationDiv)
   }
@@ -65,11 +65,22 @@ function showUserContent(user){
   regForm.email.value = ""
   regForm.password.value = ""
   regForm.passwordCheck.value = ""
-  
+
   userEmail.innerHTML = user.email
   userName.innerHTML = user.displayName
   hideItem(authContent)
   showItem(userContent)
-  
+}
 
+function showError(prefix, error) {
+  console.log(error.code)
+  switch (error.code) {
+
+    case 'auth/email-already-in-use':
+      alert(prefix + 'email já cadastrado!')
+      break;
+    default:
+      alert(prefix + ' ' + error.message)
+  }
+  hideItem(loading)
 }

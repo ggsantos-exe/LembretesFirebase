@@ -5,9 +5,7 @@ authForm.onsubmit = function (event) {
     showItem(loading)
     event.preventDefault();
     firebase.auth().signInWithEmailAndPassword(authForm.email.value, authForm.password.value)
-        .catch(error =>
-            alert('Erro no login', error),
-            hideItem(loading)
+        .catch(error => showError('Falha ao entrar: ', error)
         )
 };
 
@@ -19,8 +17,6 @@ regForm.onsubmit = function (event) {
         firebase.auth().createUserWithEmailAndPassword(regForm.email.value, regForm.password.value)
             .then(userCredential => {
                 const user = userCredential.user;
-
-                // Atualiza o perfil no Auth
                 return user.updateProfile({
                     displayName: regForm.name.value
                 }).then(() => {
@@ -33,14 +29,11 @@ regForm.onsubmit = function (event) {
                 });
             })
             .then(() => {
-                hideItem(loading);
                 alert("Usuário cadastrado com sucesso!");
                 console.log("Cadastro completo com nome e email.");
             })
             .catch(error => {
-                hideItem(loading);
-                console.error("Erro no cadastro:", error);
-                alert("Erro ao cadastrar: " + error.message);
+                showError('Falha ao realizar cadastro: ', error)
             });
     } else {
         hideItem(loading);
@@ -51,9 +44,8 @@ regForm.onsubmit = function (event) {
 
 firebase.auth().onAuthStateChanged(function (user) {
     hideItem(loading)
-    console.log(user)
     if (user) {
-        const photo = user.photoURL || "https://via.placeholder.com/150";
+        const photo = user.photoURL || "https://i.pinimg.com/474x/21/9e/ae/219eaea67aafa864db091919ce3f5d82.jpg";
         if (photo) {
             document.getElementById("userPhoto").src = photo;
         }
@@ -64,8 +56,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 })
 function signOut() {
+    showItem(loading)
     firebase.auth().signOut().catch(function (error) {
-        alert('falha ao realizar logout', error)
+        showError('Falha ao sair: ', error)
     })
 }
 function sendEmailValidation() {
@@ -74,9 +67,7 @@ function sendEmailValidation() {
     user.sendEmailVerification(actionCodeSeting).then(function () {
         alert('E-mail  enviado para ' + user.email + '! Siga as instruções para finalizar a confirmação')
     }).catch(function (error) {
-        alert('Falha ao enviar confirmação ' + error)
-    }).finally(function () {
-        hideItem(loading)
+        showError('Falha ao enviar email: ', error)
     })
 }
 
@@ -89,10 +80,7 @@ function resetPassword() {
                 alert('E-mail de redefinição de senha enviado para ' + email + '! Siga as instruções para redefinir sua senha.');
             })
             .catch(function (error) {
-                alert('Falha ao enviar email de redefinição de senha: ' + error.message);
-            })
-            .finally(function () {
-                hideItem(loading)
+                showError('Falha ao resetar senha: ', error)
             });
     } else {
         alert("Email é necessário para redefinir a senha.");
@@ -104,9 +92,7 @@ function googleAccess() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
         .catch((error) => {
-            alert("Erro ao acessar com Google: " + error.message);
-        }).finally(() => {
-            hideItem(loading)
+            showError('Falha ao acessar com google: ', error)
         });
 
 }
@@ -117,12 +103,9 @@ function deleteUser() {
         showItem(loading)
         firebase.auth().currentUser.delete().then(function () {
             alert("Conta removida com sucesso =) ")
-            }).catch(function (error) {
-                alert("Houve um erro ao remover sua conta contate o suporte " + error
-                )
-            }).finally(function () {
-                hideItem(loading)
-            })
+        }).catch(function (error) {
+            showError('Falha ao deletar usuário: ', error)
+        })
     }
 
 }
