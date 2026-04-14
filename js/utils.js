@@ -79,6 +79,45 @@ function showError(prefix, error) {
     case 'auth/email-already-in-use':
       alert(prefix + 'email já cadastrado!')
       break;
+
+    case 'auth/invalid-email':
+      alert('E-mail inválido.');
+      break;
+
+    case 'auth/weak-password':
+      alert('A senha deve ter pelo menos 6 caracteres.');
+      break;
+
+    case 'auth/too-many-requests':
+      alert('Muitas tentativas. Tente novamente mais tarde.');
+      break;
+
+    case 'auth/network-request-failed':
+      alert('Erro de conexão. Verifique sua internet.');
+      break;
+
+    case 'auth/user-disabled':
+      alert('Esta conta foi desativada.');
+      break;
+
+    case 'auth/requires-recent-login':
+      alert('Faça login novamente para continuar.');
+      break;
+    case 'auth/internal-error':
+      try {
+        const parsed = JSON.parse(error.message);
+        const firebaseCode = parsed?.error?.message;
+
+        if (firebaseCode === 'INVALID_LOGIN_CREDENTIALS') {
+          alert('E-mail ou senha incorretos.')
+        } else {
+          alert('Erro ao logar ' + error)
+        }
+
+      } catch {
+        alert('Erro ao logar ' + error)
+      }
+      break;
     default:
       alert(prefix + ' ' + error.message)
   }
